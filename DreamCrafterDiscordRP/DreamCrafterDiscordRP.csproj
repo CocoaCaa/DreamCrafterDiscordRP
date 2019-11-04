@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.1;net461</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Libraries\x86_64\discord_game_sdk.bundle" Link="%(Filename)%(Extension)">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Libraries\x86_64\discord_game_sdk.dll" Link="%(Filename)%(Extension)">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Libraries\x86_64\discord_game_sdk.dll.lib" Link="%(Filename)%(Extension)">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Libraries\x86_64\discord_game_sdk.dylib" Link="%(Filename)%(Extension)">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Remove="DisplayItemControl.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="DisplayItemControl.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.8.0" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.8.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DisplayItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

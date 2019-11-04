@@ -1,0 +1,39 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="120" d:DesignHeight="120"
+             x:Class="DreamCrafterDiscordRP.DisplayItemControl">
+  <UserControl.Styles>
+    <Style Selector="Button.Root">
+      <Setter Property="Width" Value="120" />
+      <Setter Property="Height" Value="120" />
+      <Setter Property="BorderThickness" Value="-3" />
+    </Style>
+    <Style Selector="TextBlock.ActivedText">
+      <Setter Property="TextBox.Foreground" Value="White" />
+      <Setter Property="TextBox.FontSize" Value="16" />
+      <Setter Property="TextBox.Background" Value="#55007733" />
+      <Setter Property="Margin" Value="1 0 1 0" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+      <Setter Property="TextAlignment" Value="Center" />
+    </Style>
+  </UserControl.Styles>
+  <Button
+    Classes="Root"
+    Click="HandleClick"
+  >
+    <Grid>
+      <Image Name="SelectIcon" Grid.Row="0" Grid.Column="0" />
+      <TextBlock
+        Name="ActivedText"
+        Grid.Row="0"
+        Grid.Column="0"
+        IsVisible="False"
+        Classes="ActivedText"
+      >
+        Active
+      </TextBlock>
+    </Grid>
+  </Button>
+</UserControl>
