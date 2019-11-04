@@ -4,8 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" Width="360" Height="120"
         x:Class="DreamCrafterDiscordRP.MainWindow"
-        Title="DreamCrafterDiscordRP">
-  <WrapPanel Name="DisplayItemsContainer">
-    
-  </WrapPanel>
+        Title="DreamCrafterDiscordRP"
+        Closing="HandleClosing">
+  <WrapPanel Name="DisplayItemsContainer" />
 </Window>

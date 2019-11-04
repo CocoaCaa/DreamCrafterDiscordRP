@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace DreamCrafterDiscordRP
 {
@@ -58,6 +59,13 @@ namespace DreamCrafterDiscordRP
 
             displayItemControls.ForEach(d => d.IsActive = false);
             displayItemControl.IsActive = true;
+        }
+
+        private void HandleClosing(object sender, CancelEventArgs e)
+        {
+            Console.WriteLine("Closing...");
+            discordBridge.IsRunning = false;
+            Environment.Exit(0);
         }
     }
 }

@@ -6,6 +6,8 @@ namespace DreamCrafterDiscordRP
 {
     public class DiscordBridge
     {
+        public bool IsRunning { get; set; } = true;
+
         private Discord.Discord discord;
 
         public DiscordBridge Start(long clinetId)
@@ -23,7 +25,9 @@ namespace DreamCrafterDiscordRP
         {
             try
             {
-                while (true)
+                Console.WriteLine("Start Discord bridge");
+                IsRunning = true;
+                while (IsRunning)
                 {
                     discord.RunCallbacks();
                     await Task.Delay(1000 / 60);
@@ -31,6 +35,7 @@ namespace DreamCrafterDiscordRP
             }
             finally
             {
+                Console.WriteLine("Stop and dispose Discord bridge");
                 discord.Dispose();
             }
         }
