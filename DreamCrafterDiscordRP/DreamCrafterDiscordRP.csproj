@@ -1,7 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFrameworks>netcoreapp2.1;net461</TargetFrameworks>
+    <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="**\*.xaml.cs">
@@ -41,4 +44,17 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
+  <Target Name="MonoBuild" AfterTargets="AfterBuild" Condition="'$(TargetFramework)'=='net461'">
+    <Message Text="Start MonoBuild" />
+    <MakeDir Directories="$(TargetDir)\Bundled"/>
+    <Exec WorkingDirectory="$(TargetDir)" Command="mkbundle --static -z -o $(TargetDir)\Bundled\$(TargetFileName) --simple $(TargetFileName) .\Avalonia.Themes.Default.dll" />
+    <Copy
+        SourceFiles="$(TargetDir)\libSkiaSharp.dll"
+        DestinationFolder="$(TargetDir)\Bundled\"
+    />
+    <Copy
+        SourceFiles="$(TargetDir)\discord_game_sdk.dll"
+        DestinationFolder="$(TargetDir)\Bundled\"
+    />
+  </Target>
 </Project>
