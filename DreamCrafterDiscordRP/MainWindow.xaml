@@ -5,6 +5,7 @@
         mc:Ignorable="d" Width="360" Height="120"
         x:Class="DreamCrafterDiscordRP.MainWindow"
         Title="DreamCrafterDiscordRP"
-        Closing="HandleClosing">
+        Closing="HandleClosing"
+        Icon="/Assets/app-icon.ico">
   <WrapPanel Name="DisplayItemsContainer" />
 </Window>
