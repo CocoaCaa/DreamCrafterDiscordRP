@@ -2,10 +2,63 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Width="360" Height="120"
+        mc:Ignorable="d" Width="400" Height="110"
         x:Class="DreamCrafterDiscordRP.MainWindow"
-        Title="DreamCrafterDiscordRP"
+        Title="DreamCrafter 築夢物語 - Discord Rich Presence"
         Closing="HandleClosing"
-        Icon="/Assets/app-icon.ico">
-  <WrapPanel Name="DisplayItemsContainer" />
+        Icon="/Assets/app-icon.ico"
+        Background="#333333"
+        HasSystemDecorations="False"
+>
+  <Window.Styles>
+    <Style Selector=".AppBar">
+      <Setter Property="Height" Value="30" />
+      <Setter Property="Grid.Background" Value="#555555" />
+    </Style>
+    <Style Selector=".AppBar > .Title">
+      <Setter Property="TextBox.Foreground" Value="#ffffff" />
+      <Setter Property="TextBox.Margin" Value="10 0 0 0" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style Selector=".AppBar > Button">
+      <Setter Property="Width" Value="20" />
+      <Setter Property="Height" Value="20" />
+    </Style>
+    <Style Selector=".AppBar > Button .ButtonBackground">
+      <Setter Property="Ellipse.Fill" Value="#00ee6633" />
+    </Style>
+    <Style Selector=".AppBar > Button:pressed .ButtonBackground">
+      <Setter Property="Ellipse.Fill" Value="#55000000" />
+    </Style>
+    <Style Selector=".AppBar > Button .ButtonIcon">
+      <Setter Property="Width" Value="20" />
+      <Setter Property="Height" Value="20" />
+    </Style>
+  </Window.Styles>
+  <DockPanel>
+    <Grid DockPanel.Dock="Top" ColumnDefinitions="1*, 20, 30" Classes="AppBar" Name="AppBar">
+      <TextBlock Classes="Title">DreamCrafter 築夢物語 - Discord Rich Presence</TextBlock>
+      <Button Grid.Row="0" Grid.Column="1" Click="HandleMinimize">
+        <Button.Template>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid>
+              <Ellipse Classes="ButtonBackground" />
+              <Image Classes="ButtonIcon" Source="avares://DreamCrafterDiscordRP/Assets/mini-icon.png" />
+            </Grid>
+          </ControlTemplate>
+        </Button.Template>
+      </Button>
+      <Button Grid.Row="0" Grid.Column="2" Click="HandleClose">
+        <Button.Template>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid>
+              <Ellipse Classes="ButtonBackground" />
+              <Image Classes="ButtonIcon" Source="avares://DreamCrafterDiscordRP/Assets/close-icon.png" />
+            </Grid>
+          </ControlTemplate>
+        </Button.Template>
+      </Button>
+    </Grid>
+    <WrapPanel Name="DisplayItemsContainer" />
+  </DockPanel>
 </Window>

@@ -6,6 +6,9 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Avalonia.Input;
+using Avalonia.Media;
+using Avalonia.Interactivity;
 
 namespace DreamCrafterDiscordRP
 {
@@ -33,6 +36,14 @@ namespace DreamCrafterDiscordRP
         {
             AvaloniaXamlLoader.Load(this);
 
+            var appBar = this.FindControl<Grid>("AppBar");
+            appBar.PointerPressed += (object sender, PointerPressedEventArgs e) =>
+            {
+                if (e.MouseButton == MouseButton.Left) {
+                    BeginMoveDrag();
+                }
+            };
+
             DisplayItemsContainer = this.FindControl<WrapPanel>("DisplayItemsContainer");
 
             displayItemControls = config.displayItems
@@ -59,6 +70,16 @@ namespace DreamCrafterDiscordRP
 
             displayItemControls.ForEach(d => d.IsActive = false);
             displayItemControl.IsActive = true;
+        }
+
+        private void HandleClose(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void HandleMinimize(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
 
         private void HandleClosing(object sender, CancelEventArgs e)
