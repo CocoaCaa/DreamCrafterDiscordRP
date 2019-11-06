@@ -5,6 +5,10 @@
     <Platforms>AnyCPU;x64</Platforms>
     <ApplicationIcon>Assets\app-icon.ico</ApplicationIcon>
     <StartupObject />
+    <Version>1.0.0</Version>
+    <Company>DreamCrafter</Company>
+    <Product>DreamCrafter</Product>
+    <Authors>minixz</Authors>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="**\*.xaml.cs">
