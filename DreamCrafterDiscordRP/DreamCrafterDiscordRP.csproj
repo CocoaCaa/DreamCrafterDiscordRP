@@ -48,11 +48,19 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
-  <Target Name="MonoBuild" AfterTargets="AfterBuild" Condition="'$(TargetFramework)'=='net461'">
+  <Target Name="MonoBuildx64" AfterTargets="AfterBuild" Condition="'$(TargetFramework)'=='net461' AND '$(Platform)' == 'x64'">
     <Message Text="Start MonoBuild" />
+    <Error Condition="!Exists('C:\Program Files\Mono\bin')" Text="Require install x64 Mono. https://www.mono-project.com/" />
     <MakeDir Directories="$(TargetDir)\Bundled" />
-    <Exec WorkingDirectory="$(TargetDir)" Command="mkbundle --static -z -o $(TargetDir)\Bundled\$(TargetFileName) --simple $(TargetFileName) .\Avalonia.Themes.Default.dll" />
+    <Exec WorkingDirectory="$(TargetDir)" Command="&quot;C:\Program Files\Mono\bin\mkbundle&quot; --static -z -o $(TargetDir)\Bundled\$(TargetFileName) --simple $(TargetFileName) .\Avalonia.Themes.Default.dll" />
     <Copy SourceFiles="$(TargetDir)\libSkiaSharp.dll" DestinationFolder="$(TargetDir)\Bundled\" />
     <Copy SourceFiles="$(TargetDir)\discord_game_sdk.dll" DestinationFolder="$(TargetDir)\Bundled\" />
+    <Copy SourceFiles="C:\Program Files\Mono\bin\mono-2.0-sgen.dll" DestinationFolder="$(TargetDir)\Bundled\" />
+
+    <ZipDirectory
+      SourceDirectory="$(TargetDir)\Bundled"
+      DestinationFile="$(TargetDir)\$(AssemblyName)-$(Version).zip"
+    />
+    <RemoveDir Directories="$(TargetDir)\Bundled" />
   </Target>
 </Project>
