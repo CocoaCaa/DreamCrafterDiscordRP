@@ -9,10 +9,13 @@
 ## 使用方法
 
 - 開啟 `DreamCrafterDiscordRP.exe`
+
 - 在介面內選擇想顯示的狀態
-![Screenshot](/docs/screenshot.png)
+
+  ![Screenshot](/docs/screenshot.png)
+
 - 這就會顯示在 Discord 了
-![Screenshot](/docs/example.png)
+  ![Screenshot](/docs/example.png)
 
 ## 下載
 
