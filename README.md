@@ -1,4 +1,4 @@
-# DreamCrafter Discord Rich Presence
+“# “DreamCrafter Discord Rich Presence
 
 > DreamCrafter Discord 狀態顯示
 
@@ -25,3 +25,9 @@
 https://github.com/minixz/DreamCrafterDiscordRP/releases
 
 (暫時只有 Windows exe 版，如果要 macOS / Linux 版請自行用 msbuild compile)
+
+- - -
+
+© DREAMCRAFTER https://www.letsdream.today
+
+DreamCrafterDiscordRP is develop by @minixz
