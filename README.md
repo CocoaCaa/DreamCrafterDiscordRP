@@ -1,4 +1,4 @@
-“# “DreamCrafter Discord Rich Presence
+# DreamCrafter Discord Rich Presence
 
 > DreamCrafter Discord 狀態顯示
 
