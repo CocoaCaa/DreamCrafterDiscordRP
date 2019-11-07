@@ -15,6 +15,7 @@
   ![Screenshot](/docs/screenshot.png)
 
 - 這就會顯示在 Discord 了
+
   ![Screenshot](/docs/example.png)
 
 ## 下載
