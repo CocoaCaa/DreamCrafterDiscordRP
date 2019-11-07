@@ -48,6 +48,28 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
+
+  <UsingTask TaskName="GenerateHash" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <InputFile ParameterType="System.String" Required="true" />
+      <Checksum ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Security.Cryptography" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[         
+          using (var stream = new FileStream(InputFile, FileMode.Open))
+          {
+              var sha = new SHA256Managed();
+              byte[] checksum = sha.ComputeHash(stream);
+              Checksum = BitConverter.ToString(checksum).Replace("-", String.Empty);
+          }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
   <Target Name="MonoBuildx64" AfterTargets="AfterBuild" Condition="'$(TargetFramework)'=='net461' AND '$(Platform)' == 'x64'">
     <Message Text="Start MonoBuild" />
     <Error Condition="!Exists('C:\Program Files\Mono\bin')" Text="Require install x64 Mono. https://www.mono-project.com/" />
@@ -57,10 +79,18 @@
     <Copy SourceFiles="$(TargetDir)\discord_game_sdk.dll" DestinationFolder="$(TargetDir)\Bundled\" />
     <Copy SourceFiles="C:\Program Files\Mono\bin\mono-2.0-sgen.dll" DestinationFolder="$(TargetDir)\Bundled\" />
 
+    <Delete Files="$(TargetDir)\$(AssemblyName)-$(Version).zip" />
     <ZipDirectory
       SourceDirectory="$(TargetDir)\Bundled"
       DestinationFile="$(TargetDir)\$(AssemblyName)-$(Version).zip"
     />
     <RemoveDir Directories="$(TargetDir)\Bundled" />
+
+    <GenerateHash InputFile="$(TargetDir)\$(AssemblyName)-$(Version).zip">
+      <Output
+          TaskParameter="Checksum"
+          PropertyName="ArtifactChecksum" />
+    </GenerateHash>
+    <WriteLinesToFile File="$(TargetDir)\$(AssemblyName)-$(Version)-sha256.txt" Lines="$(ArtifactChecksum)" Overwrite="true" Encoding="utf-8" />
   </Target>
 </Project>
