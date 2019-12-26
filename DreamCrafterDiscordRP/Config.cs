@@ -27,13 +27,19 @@ namespace DreamCrafterDiscordRP
                 Details = "木斧建築",
                 ImageKey = "status-icons-creative"
             },
-             new DisplayItem {
+            new DisplayItem {
+                ButtonIconSrc = "select-icons-christmas-2019.png",
+                State = "聖誕節 ✧◝(⁰▿⁰)◜✧",
+                Details = "聖誕節活動 2019",
+                ImageKey = "status-icons-christmas-2019"
+            },
+            new DisplayItem {
                 ButtonIconSrc = "select-icons-halloween-2019.png",
                 State = "不給糖就搗蛋 ◥(ฅº￦ºฅ)◤",
                 Details = "萬聖節活動 2019",
                 ImageKey = "status-icons-halloween-2019"
             },
-             new DisplayItem {
+            new DisplayItem {
                 ButtonIconSrc = "select-icons-3rd-anniversary.png",
                 State = "三歲歲 o(〃'▿'〃)o",
                 Details = "三週年活動",
