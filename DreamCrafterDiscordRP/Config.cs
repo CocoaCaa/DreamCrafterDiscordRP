@@ -28,6 +28,12 @@ namespace DreamCrafterDiscordRP
                 ImageKey = "status-icons-creative"
             },
             new DisplayItem {
+                ButtonIconSrc = "select-icons-cny-2020.png",
+                State = "2020新春 ( />ω<)/♪",
+                Details = "新春合成大賽 2020",
+                ImageKey = "status-icons-cny-2020"
+            },
+            new DisplayItem {
                 ButtonIconSrc = "select-icons-christmas-2019.png",
                 State = "聖誕節 ✧◝(⁰▿⁰)◜✧",
                 Details = "聖誕節活動 2019",
